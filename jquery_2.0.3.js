@@ -478,6 +478,7 @@ jQuery.extend({
 	// context (optional): If specified, the fragment will be created in this context, defaults to document
 	// keepScripts (optional): If true, will include scripts passed in the html string
 	parseHTML: function( data, context, keepScripts ) {
+		debugger
 		if ( !data || typeof data !== "string" ) {
 			return null;
 		}
@@ -617,6 +618,7 @@ jQuery.extend({
 	},
 
 	// results is for internal usage only
+	// 转成数组
 	makeArray: function( arr, results ) {
 		var ret = results || [];
 
