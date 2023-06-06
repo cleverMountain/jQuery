@@ -59,9 +59,10 @@ var
 	core_toString = class2type.toString,
 	core_hasOwn = class2type.hasOwnProperty,
 	core_trim = core_version.trim,
-
+	
 	// Define a local copy of jQuery
 	jQuery = function( selector, context ) {
+	
 		// The jQuery object is actually just the init constructor 'enhanced'
 		return new jQuery.fn.init( selector, context, rootjQuery );
 	},
@@ -88,12 +89,13 @@ var
 	fcamelCase = function( all, letter ) {
 		return letter.toUpperCase();
 	},
-
 	// The ready event handler and self cleanup method
 	// dom加载成功
 	completed = function() {
+	
 		document.removeEventListener( "DOMContentLoaded", completed, false );
 		window.removeEventListener( "load", completed, false );
+
 		jQuery.ready();
 	};
 
@@ -103,6 +105,7 @@ jQuery.fn = jQuery.prototype = {
 
 	constructor: jQuery, // 修正construtor
 	init: function( selector, context, rootjQuery ) {
+	
 		var match, elem;
 
 		// HANDLE: $(""), $(null), $(undefined), $(false)
@@ -223,7 +226,7 @@ jQuery.fn = jQuery.prototype = {
 	// Take an array of elements and push it onto the stack
 	// (returning the new matched element set)
 	pushStack: function( elems ) {
-debugger
+
 		// Build a new jQuery matched element set
 		var ret = jQuery.merge( this.constructor(), elems );
 
@@ -478,7 +481,7 @@ jQuery.extend({
 	// context (optional): If specified, the fragment will be created in this context, defaults to document
 	// keepScripts (optional): If true, will include scripts passed in the html string
 	parseHTML: function( data, context, keepScripts ) {
-		debugger
+
 		if ( !data || typeof data !== "string" ) {
 			return null;
 		}
@@ -870,7 +873,9 @@ function isArraylike( obj ) {
 }
 
 // All jQuery objects should point back to these
+
 rootjQuery = jQuery(document);
+
 /*!
  * Sizzle CSS Selector Engine v1.9.4-pre
  * http://sizzlejs.com/
@@ -8831,6 +8836,7 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
 // define jQuery and $ identifiers
 if ( typeof window === "object" && typeof window.document === "object" ) {
 	window.jQuery = window.$ = jQuery;
+	window.rootjQuery = rootjQuery
 }
 
 })( window );
