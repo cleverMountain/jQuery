@@ -136,49 +136,70 @@
 
 
     get: function (num) {
-
+      /**
+       * 1.获取元素集合
+       * 2.num保存存在获取所有
+       * 3.num存在获取某一个
+       */
+      return num == null ?
+        this.toArray() :
+        (num < 0 ? this[this.length + num] : this[num]);
     },
 
 
     pushStack: function (elems) {
 
+      var ret = jQuery.merge(this.constructor(), elems);
 
+
+      ret.prevObject = this;
+      ret.context = this.context;
+
+ 
+      return ret;
     },
 
-
+    // 遍历集合
     each: function (callback, args) {
-
+      return jQuery.each(this, callback, args);
     },
 
     ready: function (fn) {
+  
+      jQuery.ready.promise().done(fn);
 
+      return this;
     },
-
+    // 截取
     slice: function () {
-
+      return this.pushStack(core_slice.apply(this, arguments));
     },
-
+    // 第一个
     first: function () {
-
+      return this.eq(0);
     },
-
+    // 最后一个
     last: function () {
-
+      return this.eq(-1);
     },
-
+    // 
     eq: function (i) {
-
+      var len = this.length,
+        j = +i + (i < 0 ? len : 0);
+      return this.pushStack(j >= 0 && j < len ? [this[j]] : []);
     },
 
     map: function (callback) {
-
+      return this.pushStack(jQuery.map(this, function (elem, i) {
+        return callback.call(elem, i, elem);
+      }));
     },
 
     end: function () {
-
+      return this.prevObject || this.constructor(null);
     },
 
-    push: function () { },
+    push: [].push,
     sort: [].sort,
     splice: [].splice
   };
@@ -188,7 +209,7 @@
   /**
    * 1. 修正jQuery
    */
-  function A() { }
+  function A() { return this }
   // A.prototype.constructor = A 默认执行
   let a = new A()
   console.log(a.constructor === A.prototype.constructor)
@@ -198,7 +219,7 @@
     a: 1,
     constructor: A // 修正constructor
   }
-  console.log(A.prototype.constructor)
+  console.log(A.prototype.constructor())
 
 
   window.$ = window.jQuery = jQuery

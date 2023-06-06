@@ -12,19 +12,23 @@
     <li></li>
     <li></li>
   </ul>
+  <div>div</div>
+  <span>span</span>
   <script src="./jquery_2.0.3.js"></script>
   <script>
-    $('li').css('background', 'red')
+    // $('li').css('background', 'red')
 
 
     let str = ` <li>1</li>
                 <li>2</li>
                 <li>3</li>
       `
-    let arr = jQuery.parseHTML(str, document) // [li, li, li]
-    jQuery.each(arr, (i) => {
-      $('ul').append(arr[i])
-    })
+    // let arr = jQuery.parseHTML(str, document) // [li, li, li]
+    // jQuery.each(arr, (i) => {
+    //   $('ul').append(arr[i])
+    // })
+    let res = $('div')
+    console.log(res)
   </script>
 </body>
 </html>
