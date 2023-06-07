@@ -105,7 +105,7 @@ jQuery.fn = jQuery.prototype = {
 
 	constructor: jQuery, // 修正construtor
 	init: function( selector, context, rootjQuery ) {
-	
+
 		var match, elem;
 
 		// HANDLE: $(""), $(null), $(undefined), $(false)
@@ -173,6 +173,7 @@ jQuery.fn = jQuery.prototype = {
 
 			// HANDLE: $(expr, $(...))
 			} else if ( !context || context.jquery ) {
+				// 调用原型上的find
 				return ( context || rootjQuery ).find( selector );
 
 			// HANDLE: $(expr, context)
@@ -228,10 +229,16 @@ jQuery.fn = jQuery.prototype = {
 	pushStack: function( elems ) {
 
 		// Build a new jQuery matched element set
+		// 重新new 了一个jQuery对象
+		// constructor = jQuery
+		console.log(this.constructor())
+		
 		var ret = jQuery.merge( this.constructor(), elems );
-
+		// 获取到了当前的[元素]
 		// Add the old object onto the stack (as a reference)
+		// 添加前一个元素
 		ret.prevObject = this;
+		// 添加上下文
 		ret.context = this.context;
 
 		// Return the newly-formed element set
@@ -289,6 +296,7 @@ jQuery.fn = jQuery.prototype = {
 
 // Give the init function the jQuery prototype for later instantiation
 jQuery.fn.init.prototype = jQuery.fn;
+
 
 jQuery.extend = jQuery.fn.extend = function() {
 	var options, name, src, copy, copyIsArray, clone,
@@ -1108,6 +1116,8 @@ function Sizzle( selector, context, results, seed ) {
 
 			// Speed-up: Sizzle("TAG")
 			} else if ( match[2] ) {
+				// 获取tag
+				// ret与results引用
 				push.apply( results, context.getElementsByTagName( selector ) );
 				return results;
 
@@ -4337,7 +4347,7 @@ jQuery.event = {
 	global: {},
 
 	add: function( elem, types, handler, data, selector ) {
-
+debugger
 		var handleObjIn, eventHandle, tmp,
 			events, t, handleObj,
 			special, handlers, type, namespaces, origType,
@@ -4366,6 +4376,7 @@ jQuery.event = {
 		}
 		if ( !(eventHandle = elemData.handle) ) {
 			eventHandle = elemData.handle = function( e ) {
+				debugger
 				// Discard the second event of a jQuery.event.trigger() and
 				// when an event is called after a page has unloaded
 				return typeof jQuery !== core_strundefined && (!e || jQuery.event.triggered !== e.type) ?
@@ -5087,6 +5098,8 @@ jQuery.fn.extend({
 			// Use same guid so caller can remove using origFn
 			fn.guid = origFn.guid || ( origFn.guid = jQuery.guid++ );
 		}
+		// 绑定事件函数
+		debugger
 		return this.each( function() {
 			jQuery.event.add( this, types, fn, data, selector );
 		});
@@ -5149,6 +5162,9 @@ var isSimple = /^.[^:#\[\.,]*$/,
 		prev: true
 	};
 
+
+// 扩展了原型上的方法
+// 调用rootjQuery.find
 jQuery.fn.extend({
 	find: function( selector ) {
 		var i,
@@ -5167,11 +5183,19 @@ jQuery.fn.extend({
 		}
 
 		for ( i = 0; i < len; i++ ) {
+			
+			// 调用 Sizzle
+			// jQuery.find = Sizzle
+			// 获取了ret
 			jQuery.find( selector, self[ i ], ret );
 		}
 
 		// Needed because $( selector, context ) becomes $( context ).find( selector )
+		console.log(ret)
+		// 调用pushStack
+		// 获取到了当前的元素[ret]
 		ret = this.pushStack( len > 1 ? jQuery.unique( ret ) : ret );
+		// 添加选择器
 		ret.selector = this.selector ? this.selector + " " + selector : selector;
 		return ret;
 	},
@@ -6732,9 +6756,10 @@ function buildParams( prefix, obj, traditional, add ) {
 jQuery.each( ("blur focus focusin focusout load resize scroll unload click dblclick " +
 	"mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave " +
 	"change select submit keydown keypress keyup error contextmenu").split(" "), function( i, name ) {
-
+	
 	// Handle event binding
 	jQuery.fn[ name ] = function( data, fn ) {
+	debugger
 		return arguments.length > 0 ?
 			this.on( name, null, data, fn ) :
 			this.trigger( name );
