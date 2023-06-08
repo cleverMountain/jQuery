@@ -14,7 +14,7 @@
 (function( window, undefined ) {
 
 // Can't do this because several apps including ASP.NET trace
-// the stack via arguments.caller.callee and Firefox dies if
+// the stack via argumjQueryents.caller.callee and Firefox dies if
 // you try to trace through "use strict" call chains. (#13335)
 // Support: Firefox 18+
 // "use strict";
@@ -253,6 +253,7 @@ jQuery.fn = jQuery.prototype = {
 	},
 
 	ready: function( fn ) {
+
 		// Add the callback
 		jQuery.ready.promise().done( fn );
 
@@ -388,8 +389,10 @@ jQuery.extend({
 	// Hold (or release) the ready event
 	holdReady: function( hold ) {
 		if ( hold ) {
+			
 			jQuery.readyWait++;
 		} else {
+		
 			jQuery.ready( true );
 		}
 	},
@@ -6284,7 +6287,7 @@ jQuery.extend({
 
 	// Get and set the style property on a DOM Node
 	style: function( elem, name, value, extra ) {
-		debugger
+	
 		// Don't set styles on text and comment nodes
 		if ( !elem || elem.nodeType === 3 || elem.nodeType === 8 || !elem.style ) {
 			return;

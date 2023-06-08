@@ -1,5 +1,4 @@
 
-
 // 1.调用jQuery.prototype.css
 jQuery.prototype.css = function () {
   return jQuery.access(this, callback, name, value, arguments.length > 1)
@@ -11,17 +10,12 @@ jQuery.access = function (elems, fn, key, value, chainable, emptyGet, raw) {
   var i = 0,
     length = elems.length,
     bulk = key == null;
-
-
   for (; i < length; i++) {
     // 元素 cssProp cssValue
     fn(elems[i], key, value);
   }
-
-
   return chainable ?
     elems :
-
     // Gets
     bulk ?
       fn.call(elems) :
@@ -42,7 +36,6 @@ function fn(elem, name, value) {
     }
     return map;
   }
-
   return value !== undefined ?
     jQuery.style(elem, name, value) :
     jQuery.css(elem, name);

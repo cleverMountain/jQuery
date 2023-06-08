@@ -14,6 +14,8 @@
   </ul>
   <div>div</div>
   <span>span</span>
+  <button id="first">点击测试弹出</button>
+<button id="second">解除延迟</button> 
   <script src="./jquery_2.0.3.js"></script>
   <script>
     // $('li').css('background', 'red')
@@ -30,8 +32,24 @@
     // let res = $('div').click(function () {
     // }).css('background', 'yellow')
     // console.log(res)
-   console.log($('div'))
-    let res1 = $('div').css('background', 'yellow')
+  //  console.log($('div'))
+  //   let res1 = $('div').css('background', 'yellow')
+  //   console.log($.expando)
+
+    // let jj = $.noConflict(true)
+     
+    // console.log(jj)
+    // console.log($)
+//     $.holdReady(true)      
+$(document).ready(function aaa(){ 
+    $("#first").click(function(){ 
+    
+        alert("解除延迟后被弹出"); 
+    }) 
+}) 
+$("#second").click(function(){ 
+    $.holdReady(false); 
+})
   </script>
 </body>
 </html>
