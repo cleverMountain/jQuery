@@ -4348,7 +4348,7 @@ jQuery.event = {
 	global: {},
 
 	add: function( elem, types, handler, data, selector ) {
-debugger
+
 		var handleObjIn, eventHandle, tmp,
 			events, t, handleObj,
 			special, handlers, type, namespaces, origType,
@@ -4377,7 +4377,7 @@ debugger
 		}
 		if ( !(eventHandle = elemData.handle) ) {
 			eventHandle = elemData.handle = function( e ) {
-				debugger
+				
 				// Discard the second event of a jQuery.event.trigger() and
 				// when an event is called after a page has unloaded
 				return typeof jQuery !== core_strundefined && (!e || jQuery.event.triggered !== e.type) ?
@@ -5100,7 +5100,7 @@ jQuery.fn.extend({
 			fn.guid = origFn.guid || ( origFn.guid = jQuery.guid++ );
 		}
 		// 绑定事件函数
-		debugger
+		
 		return this.each( function() {
 			jQuery.event.add( this, types, fn, data, selector );
 		});
@@ -6203,6 +6203,7 @@ function showHide( elements, show ) {
 
 jQuery.fn.extend({
 	css: function( name, value ) {
+		
 		return jQuery.access( this, function( elem, name, value ) {
 			var styles, len,
 				map = {},
@@ -6283,6 +6284,7 @@ jQuery.extend({
 
 	// Get and set the style property on a DOM Node
 	style: function( elem, name, value, extra ) {
+		debugger
 		// Don't set styles on text and comment nodes
 		if ( !elem || elem.nodeType === 3 || elem.nodeType === 8 || !elem.style ) {
 			return;
@@ -6760,7 +6762,7 @@ jQuery.each( ("blur focus focusin focusout load resize scroll unload click dblcl
 	
 	// Handle event binding
 	jQuery.fn[ name ] = function( data, fn ) {
-	debugger
+
 		return arguments.length > 0 ?
 			this.on( name, null, data, fn ) :
 			this.trigger( name );
