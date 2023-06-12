@@ -426,16 +426,19 @@ jQuery.extend({
 	// Since version 1.3, DOM methods and functions like alert
 	// aren't supported. They return false on IE (#2968).
 	isFunction: function( obj ) {
+	
 		return jQuery.type(obj) === "function";
 	},
 
 	isArray: Array.isArray,
 
 	isWindow: function( obj ) {
+		
 		return obj != null && obj === obj.window;
 	},
 
 	isNumeric: function( obj ) {
+		debugger
 		return !isNaN( parseFloat(obj) ) && isFinite( obj );
 	},
 
