@@ -191,6 +191,7 @@ jQuery.fn = jQuery.prototype = {
 		// HANDLE: $(function)
 		// Shortcut for document ready
 		} else if ( jQuery.isFunction( selector ) ) {
+	
 			return rootjQuery.ready( selector );
 		}
 
@@ -438,7 +439,7 @@ jQuery.extend({
 	},
 
 	isNumeric: function( obj ) {
-		debugger
+
 		return !isNaN( parseFloat(obj) ) && isFinite( obj );
 	},
 
@@ -642,7 +643,9 @@ jQuery.extend({
 
 		if ( arr != null ) {
 			if ( isArraylike( Object(arr) ) ) {
+			
 				jQuery.merge( ret,
+				
 					typeof arr === "string" ?
 					[ arr ] : arr
 				);

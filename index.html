@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
   <ul>
     <li></li>
@@ -15,7 +17,7 @@
   <div>div</div>
   <span>span</span>
   <button id="first">点击测试弹出</button>
-<button id="second">解除延迟</button> 
+  <button id="second">解除延迟</button>
   <script src="./jquery_2.0.3.js"></script>
   <script>
     // $('li').css('background', 'red')
@@ -32,34 +34,63 @@
     // let res = $('div').click(function () {
     // }).css('background', 'yellow')
     // console.log(res)
-  //  console.log($('div'))
-  //   let res1 = $('div').css('background', 'yellow')
-  //   console.log($.expando)
+    //  console.log($('div'))
+    //   let res1 = $('div').css('background', 'yellow')
+    //   console.log($.expando)
 
     // let jj = $.noConflict(true)
-     
+
     // console.log(jj)
     // console.log($)
-//     $.holdReady(true)      
-// $(document).ready(function aaa(){ 
-//     $("#first").click(function(){ 
-    
-//         alert("解除延迟后被弹出"); 
-//     }) 
-// }) 
-// $("#second").click(function(){ 
-//     $.holdReady(false); 
-// })
-// let obj = {
-//   a: 1,
-//   b: 2
-// }
-// let obj1 = obj.toString
-// console.log(obj1)
-// console.log(obj1.call([]))
-// console.log($.isWindow(window))
-// console.log(window)
-console.log($.isNumeric(1.1))
+    //     $.holdReady(true)      
+    // $(document).ready(function aaa(){ 
+    //     $("#first").click(function(){ 
+
+    //         alert("解除延迟后被弹出"); 
+    //     }) 
+    // }) 
+    // $("#second").click(function(){ 
+    //     $.holdReady(false); 
+    // })
+    // let obj = {
+    //   a: 1,
+    //   b: 20
+    // }
+    // let obj1 = obj.toString
+    // console.log(obj1)
+    // console.log(obj1.call([]))
+    // console.log($.isWindow(window))
+    // console.log(window)
+    // console.log($.isNumeric(1.1))
+    // let obj = {
+    //   0: 1,
+    //   1: 2,
+    // length: 2
+    // }
+    // let res = $.makeArray(obj)
+    // console.log(res)
+    // console.log(document.readyState)
+    // document.addEventListener("DOMContentLoaded", function () {
+    //   console.log(document.getElementById('first'))
+    // }, false);
+
+    // // A fallback to window.onload, that will always work
+    // window.addEventListener("load", function () {
+    //   console.log('load')
+    // }, false);
+
+
+    console.log(document.readyState)
+
+
+    document.onreadystatechange = function () {
+      console.log(document.readyState)
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      console.log('DOMContentLoaded')
+    }, false)
   </script>
 </body>
+
 </html>
