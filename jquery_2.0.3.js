@@ -400,7 +400,7 @@ jQuery.extend({
 
 	// Handle when the DOM is ready
 	ready: function( wait ) {
-
+		debugger
 		// Abort if there are pending holds or we're already ready
 		if ( wait === true ? --jQuery.readyWait : jQuery.isReady ) {
 			return;
@@ -454,6 +454,7 @@ jQuery.extend({
 	},
 
 	isPlainObject: function( obj ) {
+		
 		// Not plain objects:
 		// - Any object or value whose internal [[Class]] property is not "[object Object]"
 		// - DOM nodes
