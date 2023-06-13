@@ -80,16 +80,28 @@
     // }, false);
 
 
-    console.log(document.readyState)
+    // console.log(document.readyState)
 
 
-    document.onreadystatechange = function () {
-      console.log(document.readyState)
+    // document.onreadystatechange = function () {
+    //   console.log(document.readyState)
+    // }
+
+    // document.addEventListener('DOMContentLoaded', function () {
+    //   console.log('DOMContentLoaded')
+    // }, false)
+    // console.log($.isNumeric('1.2'))
+    // console.log(isNaN('1.2'))
+    let a = function () {
+      alert(1)
     }
-
-    document.addEventListener('DOMContentLoaded', function () {
-      console.log('DOMContentLoaded')
-    }, false)
+    let b = function () {
+     alert(2)
+    }
+    const cb = $.Callbacks()
+    cb.add(a, b)
+    cb.remove(a)
+    cb.fire()
   </script>
 </body>
 

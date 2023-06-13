@@ -2941,6 +2941,7 @@ jQuery.Callbacks = function( options ) {
 			firingStart = 0;
 			firingLength = list.length;
 			firing = true;
+			// 执行回调
 			for ( ; list && firingIndex < firingLength; firingIndex++ ) {
 				if ( list[ firingIndex ].apply( data[ 0 ], data[ 1 ] ) === false && options.stopOnFalse ) {
 					memory = false; // To prevent further calls using add
@@ -2995,12 +2996,16 @@ jQuery.Callbacks = function( options ) {
 			},
 			// Remove a callback from the list
 			remove: function() {
+			
 				if ( list ) {
 					jQuery.each( arguments, function( _, arg ) {
 						var index;
 						while( ( index = jQuery.inArray( arg, list, index ) ) > -1 ) {
+							// 从右到左计算index = 1，即为true
+							console.log(index = jQuery.inArray( arg, list, index ) > -1)
+							// 删除数组
 							list.splice( index, 1 );
-							// Handle firing indexes
+							// 处理下标
 							if ( firing ) {
 								if ( index <= firingLength ) {
 									firingLength--;
@@ -3054,13 +3059,15 @@ jQuery.Callbacks = function( options ) {
 					if ( firing ) {
 						stack.push( args );
 					} else {
+						// 执行fire函数
 						fire( args );
 					}
 				}
 				return this;
 			},
-			// Call all the callbacks with the given arguments
+			// call调用执行
 			fire: function() {
+				// 执行fireWith
 				self.fireWith( this, arguments );
 				return this;
 			},
