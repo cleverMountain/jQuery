@@ -14,8 +14,27 @@ let jQuery = {
 		// 返回jQuery对象
 		return jQuery;
 	},
+	ready: function( wait ) {
+		// Abort if there are pending holds or we're already ready
+		if ( wait === true ? --jQuery.readyWait : jQuery.isReady ) {
+			return;
+		}
+		// Remember that the DOM is ready
+		jQuery.isReady = true;
+		// If a normal DOM Ready event fired, decrement, and wait if need be
+		if ( wait !== true && --jQuery.readyWait > 0 ) {
+			return;
+		}
+		// If there are functions bound, to execute
+		readyList.resolveWith( document, [ jQuery ] );
+
+		// Trigger any bound ready events
+		if ( jQuery.fn.trigger ) {
+			jQuery( document ).trigger("ready").off("ready");
+		}
+	},
 	// 判断是否是function
-	isFunctionisFunction: function (obj) {
+	isFunction: function (obj) {
 		return jQuery.type(obj) === "function";
 	},
 	// 判断是什么类型
@@ -44,6 +63,24 @@ let jQuery = {
 	},
 	isNumeric: function (obj) {
 		return !isNaN(parseFloat(obj)) && isFinite(obj);
+	},
+	// 是否是普通对象
+	isPlainObject: function( obj ) {
+		// 不是对象 不是doucument对象  不是window
+		if ( jQuery.type( obj ) !== "object" || obj.nodeType || jQuery.isWindow( obj ) ) {
+			return false;
+		}
+		try {
+			// 是否有构造函数   构造函数的原型对象上是否有isPrototypeOf属性
+			if ( obj.constructor &&
+					!core_hasOwn.call( obj.constructor.prototype, "isPrototypeOf" ) ) {
+				return false;
+			}
+		} catch ( e ) {
+			return false;
+		}
+
+		return true;
 	},
 	// 是否是空对象
 	isEmptyObject: function (obj) {
@@ -107,7 +144,7 @@ let jQuery = {
 		var ret = results || [];
 
 		if (arr != null) {
-			// 类数组转化
+			// 类数组转化,OBject('123') => String('123') => 类数组
 			if (isArraylike(Object(arr))) {
 				jQuery.merge(ret,
 					typeof arr === "string" ?
