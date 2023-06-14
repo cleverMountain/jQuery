@@ -846,7 +846,7 @@ jQuery.extend({
 
 jQuery.ready.promise = function( obj ) {
 	if ( !readyList ) {
-
+debugger
 		readyList = jQuery.Deferred();
 
 		// Catch cases where $(document).ready() is called after the browser event has already occurred.
@@ -3084,6 +3084,7 @@ jQuery.Callbacks = function( options ) {
 jQuery.extend({
 
 	Deferred: function( func ) {
+		debugger
 		var tuples = [
 				// action, add listener, listener list, final state
 				[ "resolve", "done", jQuery.Callbacks("once memory"), "resolved" ],
@@ -3166,7 +3167,7 @@ jQuery.extend({
 			func.call( deferred, deferred );
 		}
 
-		// All done!
+		// All done! 返回deferred对象
 		return deferred;
 	},
 
