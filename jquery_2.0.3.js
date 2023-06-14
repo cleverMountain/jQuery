@@ -400,7 +400,6 @@ jQuery.extend({
 
 	// Handle when the DOM is ready
 	ready: function( wait ) {
-		debugger
 		// Abort if there are pending holds or we're already ready
 		if ( wait === true ? --jQuery.readyWait : jQuery.isReady ) {
 			return;
@@ -3068,6 +3067,8 @@ jQuery.Callbacks = function( options ) {
 			},
 			// call调用执行
 			fire: function() {
+				console.log(this)
+
 				// 执行fireWith
 				self.fireWith( this, arguments );
 				return this;

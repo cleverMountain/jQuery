@@ -78,6 +78,10 @@
     // window.addEventListener("load", function () {
     //   console.log('load')
     // }, false);
+    // console.log(document.getElementById('first'))
+
+    // console.log(document.readyState)
+
 
 
     // console.log(document.readyState)
@@ -92,15 +96,30 @@
     // }, false)
     // console.log($.isNumeric('1.2'))
     // console.log(isNaN('1.2'))
-    let a = function () {
-      alert(1)
-    }
-    let b = function () {
-     alert(2)
-    }
+    // let a = function () {
+    //   alert(1)
+    // }
+    // let b = function () {
+    //  alert(2)
+    // }
+    // const cb = $.Callbacks()
+    // cb.add(a, b)
+    // cb.remove(a)
+    // cb.fire()
     const cb = $.Callbacks()
-    cb.add(a, b)
-    cb.remove(a)
+    let btn = true
+    function a () {
+      console.log(1)
+      if (btn) {
+        cb.fire()
+        btn = false
+      }
+    }
+    function b () {
+      console.log(2)
+    }
+    cb.add(a)
+    cb.add(b)
     cb.fire()
   </script>
 </body>
