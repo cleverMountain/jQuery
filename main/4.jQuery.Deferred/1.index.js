@@ -49,15 +49,15 @@ jQuery.extend({
 		// Keep pipe for back-compat
 		promise.pipe = promise.then;
 
-		// Add list-specific methods
+		// list是一个回调对象具有add等方法
 		jQuery.each( tuples, function( i, tuple ) {
 			var list = tuple[ 2 ],
 				stateString = tuple[ 3 ];
 
-			// promise[ done | fail | progress ] = list.add
+			// promise[ done | fail | progress ] = list.add 添加回调队列
 			promise[ tuple[1] ] = list.add;
 
-			// Handle state
+			// 状态resolved rejected undefined
 			if ( stateString ) {
 				list.add(function() {
 					// state = [ resolved | rejected ]
@@ -67,7 +67,8 @@ jQuery.extend({
 				}, tuples[ i ^ 1 ][ 2 ].disable, tuples[ 2 ][ 2 ].lock );
 			}
 
-			// deferred[ resolve | reject | notify ]
+			// 添加resolve resolveWidth reject rejectWidth  notify notifyWidth
+			// 执行dfd.resolve()相当于执行resolveWidth => list.fireWith
 			deferred[ tuple[0] ] = function() {
 				deferred[ tuple[0] + "With" ]( this === deferred ? promise : this, arguments );
 				return this;
@@ -75,7 +76,7 @@ jQuery.extend({
 			deferred[ tuple[0] + "With" ] = list.fireWith;
 		});
 
-		// Make the deferred a promise
+		// 添加promise，deferred添加promise对象
 		promise.promise( deferred );
 
 		// Call given func if any

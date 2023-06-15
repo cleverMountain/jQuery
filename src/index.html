@@ -12,7 +12,7 @@
     //  let $ = 1
    
   </script>
-  <script src="./2.96-283.js"></script>
+  <!-- <script src="./2.96-283.js"></script> -->
   <script>
     // console.log($)
     // function Aaa () {
@@ -20,7 +20,18 @@
     // }
     // let aaa = new Aaa()
     // console.log(Aaa.prototype.constructor === aaa.constructor)
-  
+  function aaa () {
+    let list = []
+    this.add = function (a) {
+    
+      list.push(a)
+      console.log(list)
+      return this
+    }
+    return this
+  }
+  let a = new aaa
+  a.add(1).add(1)
   </script>
 </body>
 </html>

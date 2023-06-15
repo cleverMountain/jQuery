@@ -846,9 +846,7 @@ jQuery.extend({
 
 jQuery.ready.promise = function( obj ) {
 	if ( !readyList ) {
-debugger
 		readyList = jQuery.Deferred();
-
 		// Catch cases where $(document).ready() is called after the browser event has already occurred.
 		// we once tried to use readyState "interactive" here, but it caused issues like the one
 		// discovered by ChrisS here: http://bugs.jquery.com/ticket/12282#comment:15
@@ -3084,7 +3082,6 @@ jQuery.Callbacks = function( options ) {
 jQuery.extend({
 
 	Deferred: function( func ) {
-		debugger
 		var tuples = [
 				// action, add listener, listener list, final state
 				[ "resolve", "done", jQuery.Callbacks("once memory"), "resolved" ],
@@ -3136,9 +3133,11 @@ jQuery.extend({
 		// Add list-specific methods
 		jQuery.each( tuples, function( i, tuple ) {
 			var list = tuple[ 2 ],
-				stateString = tuple[ 3 ];
+				stateString = 
+				tuple[ 3 ];
 
 			// promise[ done | fail | progress ] = list.add
+			// 每一个都是新的回调对象
 			promise[ tuple[1] ] = list.add;
 
 			// Handle state

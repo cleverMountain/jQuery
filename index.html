@@ -106,21 +106,38 @@
     // cb.add(a, b)
     // cb.remove(a)
     // cb.fire()
-    const cb = $.Callbacks()
-    let btn = true
-    function a () {
-      console.log(1)
-      if (btn) {
-        cb.fire()
-        btn = false
-      }
-    }
-    function b () {
-      console.log(2)
-    }
-    cb.add(a)
-    cb.add(b)
-    cb.fire()
+    // const cb = $.Callbacks()
+    // let btn = true
+    // function a () {
+    //   console.log(1)
+    //   if (btn) {
+    //     cb.fire()
+    //     btn = false
+    //   }
+    // }
+    // function b () {
+    //   console.log(2)
+    // }
+    // cb.add(a)
+    // cb.add(b)
+    // cb.fire()
+
+
+    const dfd = $.Deferred()
+    console.log(dfd)
+    setTimeout(function () {
+  
+      dfd.resolve()
+      console.dir(dfd)
+      dfd.reject()
+    })
+
+    // push进了两个list
+    dfd.done(function aaa() {
+      console.log('成功')
+    }).fail(function bbb() {
+      console.log('失败')
+    })
   </script>
 </body>
 
