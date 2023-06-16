@@ -138,6 +138,17 @@
     // }).fail(function bbb() {
     //   console.log('失败')
     // })
+
+
+    function aaa () {
+      let dfd = $Deferred()
+      dfd.resolve()
+    }
+    $.when().done(function () {
+      alert('成功')
+    }).fail(function () {
+      alert('失败')
+    })
   </script>
 </body>
 

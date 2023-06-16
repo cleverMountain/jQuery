@@ -3145,7 +3145,7 @@ jQuery.extend({
 				list.add(function() {
 					// state = [ resolved | rejected ]
 					state = stateString;
-debugger
+
 				// [ reject_list | resolve_list ].disable; progress_list.lock
 				}, tuples[ i ^ 1 ][ 2 ].disable, tuples[ 2 ][ 2 ].lock );
 			}
@@ -3216,6 +3216,7 @@ debugger
 
 		// if we're not waiting on anything, resolve the master
 		if ( !remaining ) {
+			debugger
 			deferred.resolveWith( resolveContexts, resolveValues );
 		}
 
